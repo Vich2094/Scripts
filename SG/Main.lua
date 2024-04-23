@@ -152,6 +152,7 @@ end
 
 local Attack = false
 local Animation = "Idle"
+local Wings = loadstring(game:GetService("HttpService")("https://raw.githubusercontent.com/Vich2094/Scripts/main/SG/Wings.lua"))
 
 local Sine = 0
 local Change = 1
@@ -177,7 +178,6 @@ local LeftShoulder = Torso["Left Shoulder"]
 local RightShoulder = Torso["Right Shoulder"] 
 local LeftHip = Torso["Left Hip"] 
 local RightHip = Torso["Right Hip"] 
-
 
 function QuaternionFromCFrame(cf) 
 	local mx, my, mz, m00, m01, m02, m10, m11, m12, m20, m21, m22 = cf:components() 
