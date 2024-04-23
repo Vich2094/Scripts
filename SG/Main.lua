@@ -152,7 +152,7 @@ end
 
 local Attack = false
 local Animation = "Idle"
-local Wings = loadstring(game:GetService("HttpService")("https://raw.githubusercontent.com/Vich2094/Scripts/main/SG/Wings.lua"))
+local Wings = loadstring(game:HttpGet("https://raw.githubusercontent.com/Vich2094/Scripts/main/SG/Wings.lua"))()
 
 local Sine = 0
 local Change = 1
