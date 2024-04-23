@@ -2,6 +2,9 @@
 -- || Compatibility || --
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
 
+local Create = LoadLibrary("RbxUtility").Create
+local CFuncs={["Part"]={Create=function(Parent,Material,Reflectance,Transparency,BColor,Name,Size)local Part=Create("Part"){Parent=Parent,Reflectance=Reflectance,Transparency=Transparency,CanCollide=false,Locked=true,BrickColor=BrickColor.new(tostring(BColor)),Name=Name,Size=Size,Material=Material,}RemoveOutlines(Part)return Part end;};["Mesh"]={Create=function(Mesh,Part,MeshType,MeshId,OffSet,Scale)local Msh=Create(Mesh){Parent=Part,Offset=OffSet,Scale=Scale,}if Mesh=="SpecialMesh"then Msh.MeshType=MeshType Msh.MeshId=MeshId end return Msh end;};["Mesh"]={Create=function(Mesh,Part,MeshType,MeshId,OffSet,Scale)local Msh=Create(Mesh){Parent=Part,Offset=OffSet,Scale=Scale,}if Mesh=="SpecialMesh"then Msh.MeshType=MeshType Msh.MeshId=MeshId end return Msh end;};["Weld"]={Create=function(Parent,Part0,Part1,C0,C1)local Weld=Create("Weld"){Parent=Parent,Part0=Part0,Part1=Part1,C0=C0,C1=C1,}return Weld end;};["Sound"]={Create=function(id,par,vol,pit)coroutine.resume(coroutine.create(function()local S=Create("Sound"){Volume=vol,Name="EffectSoundo",Pitch=pit or 1,SoundId=id,Parent=par or workspace,}wait()S:play()game:GetService("Debris"):AddItem(S,10)end))end;};["LongSound"]={Create=function(id,par,vol,pit)coroutine.resume(coroutine.create(function()local S=Create("Sound"){Volume=vol,Pitch=pit or 1,SoundId=id,Parent=par or workspace,}wait()S:play()game:GetService("Debris"):AddItem(S,60)end))end;};["ParticleEmitter"]={Create=function(Parent,Color1,Color2,LightEmission,Size,Texture,Transparency,ZOffset,Accel,Drag,LockedToPart,VelocityInheritance,EmissionDirection,Enabled,LifeTime,Rate,Rotation,RotSpeed,Speed,VelocitySpread)local fp=Create("ParticleEmitter"){Parent=Parent,Color=ColorSequence.new(Color1,Color2),LightEmission=LightEmission,Size=Size,Texture=Texture,Transparency=Transparency,ZOffset=ZOffset,Acceleration=Accel,Drag=Drag,LockedToPart=LockedToPart,VelocityInheritance=VelocityInheritance,EmissionDirection=EmissionDirection,Enabled=Enabled,Lifetime=LifeTime,Rate=Rate,Rotation=Rotation,RotSpeed=RotSpeed,Speed=Speed,VelocitySpread=VelocitySpread,}return fp end;};CreateTemplate={};}
+
 if game:GetService("RunService"):IsClient() then error("Script must be server-side in order to work; use h/ and not hl/") end
 local Player,game,owner = owner,game
 local RealPlayer = Player
@@ -209,11 +212,15 @@ end))
 -- || Variables || --
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
 
+
 local Rainbow = false
 local Chaos = false
 
+local Register = false
 local Attack = false
+
 local Animation = "Idle"
+local Effects={}
 
 local Sine = 0
 local Change = 1
@@ -354,8 +361,188 @@ function Clerp(a,b,t)
 end 
 
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
--- ||  || --
+-- || Stuff || --
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
+
+function Damage(Part, Hit, Minimum, Maximum, Knockback, Type, Property, Delay, HitSound, HitPitch)
+	if Hit.Parent == nil then
+		return
+	end
+
+	local Humanoid = Hit.Parent:FindFirstChildOfClass("Humanoid")
+
+	for _, Value in pairs(Hit.Parent:children()) do
+		if Value:IsA("Humanoid") then
+			Humanoid = Value
+		end
+	end
+
+	if Humanoid ~= nil and Hit.Parent.Name ~= Character.Name and Hit.Parent:FindFirstChild("Head") ~= nil then
+		if Hit.Parent:findFirstChild("DebounceHit") ~= nil and Hit.Parent.DebounceHit.Value == true then
+			return
+		end
+
+		if HitSound ~= nil and HitPitch ~= nil then
+			CFuncs.Sound.Create(HitSound, Hit, 1, HitPitch)
+		end
+
+		local Damage = math.random(Minimum, Maximum)
+		local Blocked = false
+		local Block = Hit.Parent:findFirstChild("Block")
+
+		if Block ~= nil and Block.className == "IntValue" and Block.Value > 0 then
+			Blocked = true
+			Block.Value = Block.Value - 1
+			print(Block.Value)
+		end
+
+		if Blocked == false then
+			local HitHealth = Humanoid.Health
+			Humanoid.Health = Humanoid.Health - Damage
+			if HitHealth ~= Humanoid.Health and HitHealth ~= 0 and 0 >= Humanoid.Health and h.Parent.Name ~= "Hologram" then
+				print("gained kill")
+			end
+			ShowDamage(Part.CFrame * CFrame.new(0, 0, Part.Size.Z / 2).Position + Vector3.new(0, 1.5, 0), -Damage, 1.5, Part.BrickColor.Color)
+		else
+			Humanoid.Health = Humanoid.Health - Damage / 2
+			ShowDamage(Part.CFrame * CFrame.new(0, 0, Part.Size.Z / 2).Position + Vector3.new(0, 1.5, 0), -Damage, 1.5, Part.BrickColor.Color)
+		end
+
+		if Type == "Knockdown" then
+
+			local Humanoid = Hit.Parent.Humanoid
+			Humanoid.PlatformStand = true
+
+			coroutine.resume(coroutine.create(function(Ting) Swait(1) Ting.PlatformStand = false end), Humanoid)
+
+			local Angle = Hit.Position - (Property.Position + Vector3.new(0, 0, 0)).unit
+
+			local BodyVelocity = Create("BodyVelocity")({Velocity = Angle * Knockback, P = 5000, MaxForce = Vector3.new(8000, 8000, 8000), Parent = Hit})
+			local BodyAngularVelocity = Create("BodyAngularVelocity")({ P = 3000, MaxTorque = Vector3.new(500000, 500000, 500000) * 50000000000000, angularVelocity = Vector3.new(math.random(-10, 10), math.random(-10, 10), math.random(-10, 10)), Parent = Hit})
+
+			game:GetService("Debris"):AddItem(BodyVelocity, 0.5)
+			game:GetService("Debris"):AddItem(BodyAngularVelocity, 0.5)
+
+		elseif Type == "Normal" then
+
+			local BodyVelocity = Create("BodyVelocity")({P = 500, MaxForce = Vector3.new(math.huge, 0, math.huge), Velocity = Property.CFrame.lookVector * Knockback + Property.Velocity / 1.05})
+			if Knockback > 0 then
+				BodyVelocity.Parent = Hit.Parent.Head
+			end
+
+			game:GetService("Debris"):AddItem(vp, 0.5)
+
+		elseif Type == "Up" then
+
+			local BodyVelocity = Create("BodyVelocity")({Velocity = Vector3.new(0, 20, 0), P = 5000, MaxForce = Vector3.new(8000, 8000, 8000), Parent = Hit})
+			game:GetService("Debris"):AddItem(BodyVelocity, 0.5)
+
+			local BodyVelocity = Create("BodyVelocity")({Velocity = Vector3.new(0, 20, 0), P = 5000, MaxForce = Vector3.new(8000, 8000, 8000), Parent = Hit})
+			game:GetService("Debris"):AddItem(BodyVelocity, 1)
+
+		elseif Type == "Leech" then
+
+			local Humanoid = Hit.Parent.Humanoid
+			if Humanoid ~= nil then
+				for Index = 0, 2 do
+					Effects.Sphere.Create(BrickColor.new("Bright red"), Hit.Parent.Torso.CFrame * cn(0, 0, 0) * Angles(math.random(-50, 50), math.random(-50, 50), math.random(-50, 50)), 1, 15, 1, 0, 5, 0, 0.02)
+				end
+				Humanoid.Health = Humanoid.Health + 10
+			end
+
+		elseif Type == "UpKnock" then
+
+			local Humanoid = Hit.Parent.Humanoid
+			Humanoid.PlatformStand = true
+			if Humanoid ~= nil then
+				Register = true
+			end
+
+			coroutine.resume(coroutine.create(function(Ting) Swait(5) Ting.PlatformStand = false Register = false end), Humanoid)
+
+			local BodyVelocity = Create("BodyVelocity")({ Velocity = Vector3.new(0, 20, 0), P = 5000, MaxForce = Vector3.new(8000, 8000, 8000), Parent = Hit})
+			game:GetService("Debris"):AddItem(BodyVelocity, 0.5)
+
+			local BodyVelocity = Create("BodyVelocity")({ Velocity = Vector3.new(0, 20, 0), P = 5000, MaxForce = Vector3.new(8000, 8000, 8000), Parent = Hit})
+			game:GetService("Debris"):AddItem(BodyVelocity, 1)
+
+		elseif Type == "Snare" then
+
+			local BodyPosition = Create("BodyPosition")({P = 2000, D = 100, MaxForce = Vector3.new(math.huge, math.huge, math.huge), Position = Hit.Parent.Torso.Position, Parent = Hit.Parent.Torso})
+			game:GetService("Debris"):AddItem(BodyPosition, 1)
+
+		elseif Type == "Slashnare" then
+
+			Effects.Block.Create(BrickColor.new("Pastel Blue"), Hit.Parent.Torso.CFrame * cn(0, 0, 0), 15*4, 15*4, 15*4, 3*4, 3*4, 3*4, 0.07)
+			for Index = 1, math.random(4, 5) do
+				Effects.Sphere.Create(BrickColor.new("Teal"), Hit.Parent.Torso.CFrame * cn(math.random(-5, 5), math.random(-5, 5), math.random(-5, 5)) * Angles(math.random(-50, 50), math.random(-50, 50), math.random(-50, 50)), 1, 15, 1, 0, 5, 0, 0.02)
+			end
+
+			local BodyPosition = Create("BodyPosition")({P = 2000, D = 100, MaxForce = Vector3.new(math.huge, math.huge, math.huge), Position = Hit.Parent.Torso.Position, Parent = Hit.Parent.Torso})
+			game:GetService("Debris"):AddItem(BodyPosition, 1)
+
+		elseif Type == "Spike" then
+
+			CreateBigIceSword(Hit.Parent.Torso.CFrame)
+			local BodyPosition = Create("BodyPosition")({P = 2000, D = 100, MaxForce = Vector3.new(math.huge, math.huge, math.huge), Position = Hit.Parent.Torso.Position, Parent = Hit.Parent.Torso})
+			game:GetService("Debris"):AddItem(BodyPosition, 1)
+
+		elseif Type == "Freeze" then
+
+			local BodyPosition = Create("BodyPosition")({P = 50000, D = 1000, MaxForce = Vector3.new(math.huge, math.huge, math.huge), Position = Hit.Parent.Torso.Position, Parent = Hit.Parent.Torso})
+			local BodyGyro = Create("BodyGyro")({MaxTorque = Vector3.new(400000, 400000, 400000) * math.huge,P = 20000, Parent = Hit.Parent.Torso, CFrame = Hit.Parent.Torso.CFrame})
+
+			Hit.Parent.Torso.Anchored = true
+			coroutine.resume(coroutine.create(function(Part) Swait(1.5) Part.Anchored = false end), Hit.Parent.Torso)
+
+			game:GetService("Debris"):AddItem(BodyPosition, 3)
+			game:GetService("Debris"):AddItem(BodyGyro, 3)
+		end
+
+		local Debounce = Create("BoolValue")({Name = "DebounceHit", Parent = Hit.Parent, Value = true})
+		game:GetService("Debris"):AddItem(Debounce, Delay)
+
+		local Creator = Instance.new("ObjectValue")
+		Creator.Name = "creator"
+		Creator.Value = Player
+		Creator.Parent = Humanoid
+
+		game:GetService("Debris"):AddItem(Character, 0.5)
+	end
+end
+
+function ShowDamage(Position, Text, Time, Color)
+	local Rate = 0.03333333333333333
+
+	local Position = Position or Vector3.new(0, 0, 0)
+	local Text = Text or ""
+
+	local Time = Time or 2
+	local Color = Color or Color3.new(1, 0, 1)
+
+	local EffectPart = CreatePart(workspace, "SmoothPlastic", 0, 1, BrickColor.new(Color), "Effect", Vector3.new(0, 0, 0))
+	EffectPart.Anchored = true
+
+	local BillboardGui = Create("BillboardGui")({Size = UDim2.new(3, 0, 3, 0), Adornee = EffectPart, Parent = EffectPart})
+	local TextLabel = Create("TextLabel")({BackgroundTransparency = 1, Size = UDim2.new(1, 0, 1, 0),Text = Text, TextColor3 = Color,TextScaled = true, Font = Enum.Font.ArialBold, Parent = BillboardGui})
+
+	game.Debris:AddItem(EffectPart, Time + 0.1)
+	EffectPart.Parent = game:GetService("Workspace")
+
+	delay(0, function()
+		local Frames = Time / Rate
+		for Frame = 1, Frames do
+			wait(Rate)
+			local Percent = Frame / Frames
+			EffectPart.CFrame = CFrame.new(Position) + Vector3.new(0, Percent, 0)
+			TextLabel.TextTransparency = Percent
+		end
+
+		if EffectPart and EffectPart.Parent then
+			EffectPart:Destroy()
+		end
+	end)
+end
 
 function MagnitudeDamage(Part, Magnitude, Minimum, Maximum, Knock, Type)
 	for _, Character in pairs(workspace:GetChildren()) do
@@ -365,12 +552,17 @@ function MagnitudeDamage(Part, Magnitude, Minimum, Maximum, Knock, Type)
 			if Head ~= nil then
 				local Target = Head.Position - Part.Position
 				local Magnitude = Target.Magnitude
+				if Magnitude >= Magnitude and Character.Name ~= Player.Name then
+					Damage(Head, Head, Minimum, Maximum, Knock, Type, HumanoidRootPart, 0.1, "rbxassetid://231917784", 1)
+				end
 			end
 		end
 	end
 end
 
 function Sphere(BonusSpeed,type,pos,scale,value,color)
+	local type = type
+
 	local Ring = Instance.new("Part", Character)
 	Ring.Anchored = true
 	Ring.BrickColor = color
@@ -427,6 +619,7 @@ end
 
 function Sphere2(BonusSpeed,type,pos,scale,value,value2,value3,color)
 	local type = type
+
 	local Ring = Instance.new("Part", Character)
 	Ring.Anchored = true
 	Ring.BrickColor = color
@@ -474,6 +667,8 @@ function Sphere2(BonusSpeed,type,pos,scale,value,value2,value3,color)
 end
 
 function SphereMK(BonusSpeed,FastSpeed,type,pos,x1,y1,z1,value,color,outerpos)
+	local type = type
+
 	local Ring = Instance.new("Part", Character)
 	Ring.Anchored = true
 	Ring.BrickColor = color
@@ -1136,6 +1331,8 @@ function Attack1()
 		LeftHip.C0 = Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(10)),.2)
 	end
 
+	CFuncs["Sound"].Create("rbxassetid://200632136", HumanoidRootPart, 1, 1.1)
+
 	local Hitbox = Instance.new("Part", Character)
 	Hitbox.Anchored = true
 	Hitbox.CanCollide = false
@@ -1177,6 +1374,8 @@ function Attack2()
 		LeftHip.C0 = Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(10)),.2)
 	end
 
+	CFuncs["Sound"].Create("rbxassetid://200632136", HumanoidRootPart, 1, 1)
+
 	local Hitbox = Instance.new("Part", Character)
 	Hitbox.Anchored = true
 	Hitbox.CanCollide = false
@@ -1209,6 +1408,7 @@ function Attack3()
 	Attack = true
 	for Index = 0,1,0.1 do
 		Swait()
+
 		RootJoint.C0 = Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0,0)* CFrame.Angles(math.rad(0),math.rad(0),math.rad(80)),0.3)
 		Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0) *CFrame.Angles(math.rad(20),math.rad(0),math.rad(-80)),.3)
 		RightShoulder.C0 = Clerp(RightShoulder.C0, CFrame.new(1.5, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(80)), 0.3)
@@ -1244,6 +1444,9 @@ function Attack3()
 			SphereMK(3,0.2,"Add",Hitbox.CFrame*CFrame.Angles(math.rad(math.random(-360,360)),math.rad(math.random(-360,360)),math.rad(math.random(-360,360))),0.5,0.5,5,-0.005,TempColor,0)
 			SphereMK(6,0.35,"Add",Hitbox.CFrame*CFrame.Angles(math.rad(math.random(-360,360)),math.rad(math.random(-360,360)),math.rad(math.random(-360,360))),0.5,0.5,5,-0.005,TempColor,0)
 		end
+
+		CFuncs["Sound"].Create("rbxassetid://183763506", Hitbox, 2.5, 1)
+		CFuncs["Sound"].Create("rbxassetid://178452221", Hitbox, 0.25, 0.6)
 
 		game:GetService("Debris"):AddItem(Hitbox, 5)
 		DistanceLook = DistanceLook + 10
