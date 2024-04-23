@@ -177,27 +177,27 @@ coroutine.resume(coroutine.create(function()
 			Swait()
 			g = g + 5
 		end
-		
+
 		for Index = 0, 254/5 do
 			Swait()
 			r = r - 5
 		end
-		
+
 		for Index = 0, 254/5 do
 			Swait()
 			b = b + 5
 		end
-		
+
 		for Index = 0, 254/5 do
 			Swait()
 			g = g - 5
 		end
-		
+
 		for Index = 0, 254/5 do
 			Swait()
 			r = r + 5
 		end
-		
+
 		for Index = 0, 254/5 do
 			Swait()
 			b = b - 5
@@ -383,44 +383,44 @@ function Sphere(BonusSpeed,type,pos,scale,value,color)
 	Ring.TopSurface = 0
 	Ring.BottomSurface = 0
 	Ring.CFrame = pos
-	
+
 	local RingMesh = Instance.new("SpecialMesh", Ring)
 	RingMesh.MeshType = "Sphere"
 	RingMesh.Scale = scale
-	
+
 	if Rainbow == true then
 		Ring.Color = Color3.new(r/255,g/255,b/255)
 	end
-	
+
 	local Scaler2 = 1
 	if type == "Add" then
 		Scaler2 = 1*value
 	elseif type == "Divide" then
 		Scaler2 = 1/value
 	end
-	
+
 	coroutine.resume(coroutine.create(function()
 		for Index = 0,10/BonusSpeed,0.1 do
 			Swait()
-			
+
 			if Rainbow == true then
 				Ring.Color = Color3.new(r/255,g/255,b/255)
 			end
-			
+
 			if type == "Add" then
 				Scaler2 = Scaler2 - 0.01*value/BonusSpeed
 			elseif type == "Divide" then
 				Scaler2 = Scaler2 - 0.01/value*BonusSpeed
 			end
-			
+
 			if Chaos == true then
 				Ring.BrickColor = BrickColor.random()
 			end
-			
+
 			Ring.Transparency = Ring.Transparency + 0.01*BonusSpeed
 			RingMesh.Scale = RingMesh.Scale + Vector3.new(Scaler2*BonusSpeed, Scaler2*BonusSpeed, Scaler2*BonusSpeed)
 		end
-		
+
 		Ring:Destroy()
 	end))
 end
@@ -487,50 +487,50 @@ function SphereMK(BonusSpeed,FastSpeed,type,pos,x1,y1,z1,value,color,outerpos)
 	Ring.BottomSurface = 0
 	Ring.CFrame = pos
 	Ring.CFrame = Ring.CFrame + Ring.CFrame.lookVector*outerpos
-	
+
 	local RingMesh = Instance.new("SpecialMesh", Ring)
 	RingMesh.MeshType = "Sphere"
 	RingMesh.Scale = Vector3.new(x1,y1,z1)
-	
+
 	if Rainbow == true then
 		Ring.Color = Color3.new(r/255,g/255,b/255)
 	end
-	
+
 	local Scaler2 = 1
 	local Speeder = FastSpeed
-	
+
 	if type == "Add" then
 		Scaler2 = 1*value
 	elseif type == "Divide" then
 		Scaler2 = 1/value
 	end
-	
+
 	coroutine.resume(coroutine.create(function()
 		for Index = 0,10/BonusSpeed,0.1 do
 			Swait()
-			
+
 			if Rainbow == true then
 				Ring.Color = Color3.new(r/255,g/255,b/255)
 			end
-			
+
 			if type == "Add" then
 				Scaler2 = Scaler2 - 0.01*value/BonusSpeed
 			elseif type == "Divide" then
 				Scaler2 = Scaler2 - 0.01/value*BonusSpeed
 			end
-			
+
 			if Chaos == true then
 				Ring.BrickColor = BrickColor.random()
 			end
-			
+
 			Speeder = Speeder - 0.01*FastSpeed*BonusSpeed
-			
+
 			Ring.CFrame = Ring.CFrame + Ring.CFrame.lookVector*Speeder*BonusSpeed
 			Ring.Transparency = Ring.Transparency + 0.01*BonusSpeed
-			
+
 			RingMesh.Scale = RingMesh.Scale + Vector3.new(Scaler2*BonusSpeed, Scaler2*BonusSpeed, 0)
 		end
-		
+
 		Ring:Destroy()
 	end))
 end
@@ -1125,15 +1125,15 @@ end
 
 function Attack1()
 	Attack = true
-	
+
 	for Index = 0,1,0.1 do
 		Swait()
 		RootJoint.C0 = Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0,0)* CFrame.Angles(math.rad(20),math.rad(0),math.rad(-40)),0.2)
 		Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0) *CFrame.Angles(math.rad(0),math.rad(0),math.rad(40)),.2)
 		RightShoulder.C0 = Clerp(RightShoulder.C0, CFrame.new(1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(-40)), 0.2)
 		LeftShoulder.C0 = Clerp(LeftShoulder.C0, CFrame.new(-1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(-40)), 0.2)
-		RightHip.C0=Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),-0.75)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(20)),.2)
-		LeftHip.C0Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(10)),.2)
+		RightHip.C0 = Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),-0.75)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(20)),.2)
+		LeftHip.C0 = Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(10)),.2)
 	end
 
 	local Hitbox = Instance.new("Part", Character)
@@ -1147,18 +1147,18 @@ function Attack1()
 	Hitbox.TopSurface = 0
 	Hitbox.BottomSurface = 0
 	Hitbox.CFrame = HumanoidRootPart.CFrame + HumanoidRootPart.CFrame.LookVector*2
-	
+
 	MagnitudeDamage(Hitbox, 3, 10,30, 0, "Normal")
 	Hitbox:Destroy()
-	
+
 	for Index = 0,1,0.1 do
 		Swait()
 		RootJoint.C0 = Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0,0)* CFrame.Angles(math.rad(-5),math.rad(0),math.rad(70)),0.4)
 		Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0) *CFrame.Angles(math.rad(20),math.rad(0),math.rad(-70)),.4)
 		RightShoulder.C0 = Clerp(RightShoulder.C0, CFrame.new(1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(70)), 0.4)
 		LeftShoulder.C0 = Clerp(LeftShoulder.C0, CFrame.new(-1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(40)), 0.4)
-		RightHip.C0=Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),-0.75)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-40)),.4)
-		LeftHip.C0Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-10)),.4)
+		RightHip.C0 = Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),-0.75)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-40)),.4)
+		LeftHip.C0 = Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-10)),.4)
 	end
 
 	Attack = false
@@ -1166,17 +1166,17 @@ end
 
 function Attack2()
 	Attack = true
-	
+
 	for Index = 0,1,0.1 do
 		Swait()
 		RootJoint.C0 = Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0,0)* CFrame.Angles(math.rad(20),math.rad(0),math.rad(40)),0.2)
 		Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0) *CFrame.Angles(math.rad(0),math.rad(0),math.rad(-40)),.2)
 		RightShoulder.C0 = Clerp(RightShoulder.C0, CFrame.new(1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(40)), 0.2)
 		LeftShoulder.C0 = Clerp(LeftShoulder.C0, CFrame.new(-1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(40)), 0.2)
-		RightHip.C0=Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),-0.75)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(20)),.2)
-		LeftHip.C0Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(10)),.2)
+		RightHip.C0 = Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),-0.75)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(20)),.2)
+		LeftHip.C0 = Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(10)),.2)
 	end
-	
+
 	local Hitbox = Instance.new("Part", Character)
 	Hitbox.Anchored = true
 	Hitbox.CanCollide = false
@@ -1188,20 +1188,20 @@ function Attack2()
 	Hitbox.TopSurface = 0
 	Hitbox.BottomSurface = 0
 	Hitbox.CFrame = HumanoidRootPart.CFrame + HumanoidRootPart.CFrame.LookVector*2
-	
+
 	MagnitudeDamage(Hitbox, 3, 10,30, 0, "Normal")
 	Hitbox:Destroy()
-	
+
 	for Index = 0,1,0.1 do
 		Swait()
 		RootJoint.C0 = Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0,0)* CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-70)),0.4)
 		Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0) *CFrame.Angles(math.rad(20),math.rad(0),math.rad(70)),.4)
 		RightShoulder.C0 = Clerp(RightShoulder.C0, CFrame.new(1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(-40)), 0.4)
 		LeftShoulder.C0 = Clerp(LeftShoulder.C0, CFrame.new(-1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(-70)), 0.4)
-		RightHip.C0=Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-40)),.4)
-		LeftHip.C0Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-10)),.4)
+		RightHip.C0 = Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-40)),.4)
+		LeftHip.C0 = Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-10)),.4)
 	end
-	
+
 	Attack = false
 end
 
@@ -1213,15 +1213,15 @@ function Attack3()
 		Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0) *CFrame.Angles(math.rad(20),math.rad(0),math.rad(-80)),.3)
 		RightShoulder.C0 = Clerp(RightShoulder.C0, CFrame.new(1.5, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(80)), 0.3)
 		LeftShoulder.C0 = Clerp(LeftShoulder.C0, CFrame.new(-1.5, 0.5, 0) * CFrame.Angles(math.rad(10), math.rad(0), math.rad(-20)), 0.3)
-		RightHip.C0=Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-0.5),math.rad(0),math.rad(0)),.3)
-		LeftHip.C0Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-2.5),math.rad(10),math.rad(0)),.3)
+		RightHip.C0 = Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-0.5),math.rad(0),math.rad(0)),.3)
+		LeftHip.C0 = Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-2.5),math.rad(10),math.rad(0)),.3)
 	end
-	
+
 	local DistanceLook = 5
-	
+
 	for Index = 0, 4 do
 		Swait(2)
-		
+
 		local Hitbox = Instance.new("Part", Character)
 		Hitbox.Anchored = true
 		Hitbox.CanCollide = false
@@ -1233,22 +1233,22 @@ function Attack3()
 		Hitbox.TopSurface = 0
 		Hitbox.BottomSurface = 0
 		Hitbox.CFrame = HumanoidRootPart.CFrame + HumanoidRootPart.CFrame.LookVector*DistanceLook
-		
+
 		Sphere(3,"Add",Hitbox.CFrame,Vector3.new(0,0,0),0.15,TempColor)
 		Sphere(6,"Add",Hitbox.CFrame,Vector3.new(0,0,0),0.3,TempColor)
-		
+
 		MagnitudeDamage(Hitbox, 10, 15,35, 0, "Normal")
-		
+
 		for Index = 0, 2 do
 			SphereMK(2,0.2,"Add",RightArm.CFrame*CFrame.Angles(math.rad(-90+math.random(-20,20)),math.rad(math.random(-20,20)),math.rad(math.random(-20,20))),0.5,0.5,5,-0.005,TempColor,0)
 			SphereMK(3,0.2,"Add",Hitbox.CFrame*CFrame.Angles(math.rad(math.random(-360,360)),math.rad(math.random(-360,360)),math.rad(math.random(-360,360))),0.5,0.5,5,-0.005,TempColor,0)
 			SphereMK(6,0.35,"Add",Hitbox.CFrame*CFrame.Angles(math.rad(math.random(-360,360)),math.rad(math.random(-360,360)),math.rad(math.random(-360,360))),0.5,0.5,5,-0.005,TempColor,0)
 		end
-	
+
 		game:GetService("Debris"):AddItem(Hitbox, 5)
 		DistanceLook = DistanceLook + 10
 	end
-	
+
 	Attack = false
 end
 
@@ -1372,43 +1372,43 @@ local Animations = game:GetService("RunService").Heartbeat:Connect(function()
 	if HumanoidRootPart.Velocity.y > 1 and Hit==nil then 
 		Animation = "Jump"
 		if Attack == false then
-			RightHip.C0=Clerp(RightHip.C0,CFrame.new(1,-0.35 - 0.05 * math.cos(Sine / 25),-0.75)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-20)),.1)
-			LeftHip.C0=Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(20)),.1)
-			RootJoint.C0=Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0,0 + 0.05 * math.cos(Sine / 25))*CFrame.Angles(math.rad(-10),math.rad(0),math.rad(0)),.1)
-			Torso.Neck.C0=Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0)*CFrame.Angles(math.rad(-2.5),math.rad(0),math.rad(0)),.1)
-			RightShoulder.C0=Clerp(RightShoulder.C0,CFrame.new(1.45,0.5 + 0.1 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(25)),.1)
-			LeftShoulder.C0=Clerp(LeftShoulder.C0,CFrame.new(-1.45,0.5 + 0.1 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-25)),.1)
+			RightHip.C0 = Clerp(RightHip.C0,CFrame.new(1,-0.35 - 0.05 * math.cos(Sine / 25),-0.75)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-20)),.1)
+			LeftHip.C0 = Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(20)),.1)
+			RootJoint.C0 = Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0,0 + 0.05 * math.cos(Sine / 25))*CFrame.Angles(math.rad(-10),math.rad(0),math.rad(0)),.1)
+			Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0)*CFrame.Angles(math.rad(-2.5),math.rad(0),math.rad(0)),.1)
+			RightShoulder.C0 = Clerp(RightShoulder.C0,CFrame.new(1.45,0.5 + 0.1 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(25)),.1)
+			LeftShoulder.C0 = Clerp(LeftShoulder.C0,CFrame.new(-1.45,0.5 + 0.1 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-25)),.1)
 		end
 	elseif HumanoidRootPart.Velocity.y < -1 and Hit==nil then 
 		Animation = "Fall"
 		if Attack == false then
-			RightHip.C0=Clerp(RightHip.C0,CFrame.new(1,-0.35 - 0.05 * math.cos(Sine / 25),-0.75)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-20)),.1)
-			LeftHip.C0=Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(20)),.1)
-			RootJoint.C0=Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0,0 + 0.05 * math.cos(Sine / 25))*CFrame.Angles(math.rad(10),math.rad(0),math.rad(0)),.1)
-			Torso.Neck.C0=Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0)*CFrame.Angles(math.rad(2.5),math.rad(0),math.rad(0)),.1)
-			RightShoulder.C0=Clerp(RightShoulder.C0,CFrame.new(1.45,0.5 + 0.1 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(-15),math.rad(0),math.rad(55)),.1)
-			LeftShoulder.C0=Clerp(LeftShoulder.C0,CFrame.new(-1.45,0.5 + 0.1 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(-15),math.rad(0),math.rad(-55)),.1)
+			RightHip.C0 = Clerp(RightHip.C0,CFrame.new(1,-0.35 - 0.05 * math.cos(Sine / 25),-0.75)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-20)),.1)
+			LeftHip.C0 = Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(20)),.1)
+			RootJoint.C0 = Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0,0 + 0.05 * math.cos(Sine / 25))*CFrame.Angles(math.rad(10),math.rad(0),math.rad(0)),.1)
+			Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0)*CFrame.Angles(math.rad(2.5),math.rad(0),math.rad(0)),.1)
+			RightShoulder.C0 = Clerp(RightShoulder.C0,CFrame.new(1.45,0.5 + 0.1 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(-15),math.rad(0),math.rad(55)),.1)
+			LeftShoulder.C0 = Clerp(LeftShoulder.C0,CFrame.new(-1.45,0.5 + 0.1 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(-15),math.rad(0),math.rad(-55)),.1)
 		end
 	elseif Velocity < 1 and Hit ~= nil then
 		Animation = "Idle"
 		if Attack == false then
-			RightHip.C0=Clerp(RightHip.C0,CFrame.new(1,-1 - 0.1 * math.cos(Sine / 32),0)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(-20 - 2 * math.cos(Sine / 56)),math.rad(10 - 3 * math.cos(Sine / 32))),.1)
-			LeftHip.C0=Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.1 * math.cos(Sine / 32),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(0),math.rad(0 - 2 * math.cos(Sine / 56)),math.rad(-10 + 3 * math.cos(Sine / 32))),.1)
-			RootJoint.C0=Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0 + 0.03 * math.cos(Sine / 32),0 + 0.1 * math.cos(Sine / 32))*CFrame.Angles(math.rad(10 - 3 * math.cos(Sine / 32)),math.rad(0),math.rad(20 + 2 * math.cos(Sine / 56))),.1)
-			Torso.Neck.C0=Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0)*CFrame.Angles(math.rad(17 - 6 * math.cos(Sine / 37)),math.rad(0 + 5 * math.cos(Sine / 43) - 5 * math.cos(Sine / 0.25)),math.rad(-20 - 2 * math.cos(Sine / 56))),.1)
-			RightShoulder.C0=Clerp(RightShoulder.C0,CFrame.new(1.5,0.5,0)*CFrame.Angles(math.rad(5 + 3 * math.cos(Sine / 43)),math.rad(-16 - 5 * math.cos(Sine / 52)),math.rad(23 + 4 * math.cos(Sine / 37))),.1)
-			LeftShoulder.C0=Clerp(LeftShoulder.C0,CFrame.new(-1.5,0.5,0)*CFrame.Angles(math.rad(160),math.rad(0),math.rad(25)),.1)
+			RightHip.C0 = Clerp(RightHip.C0,CFrame.new(1,-1 - 0.1 * math.cos(Sine / 32),0)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(-20 - 2 * math.cos(Sine / 56)),math.rad(10 - 3 * math.cos(Sine / 32))),.1)
+			LeftHip.C0 = Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.1 * math.cos(Sine / 32),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(0),math.rad(0 - 2 * math.cos(Sine / 56)),math.rad(-10 + 3 * math.cos(Sine / 32))),.1)
+			RootJoint.C0 = Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0 + 0.03 * math.cos(Sine / 32),0 + 0.1 * math.cos(Sine / 32))*CFrame.Angles(math.rad(10 - 3 * math.cos(Sine / 32)),math.rad(0),math.rad(20 + 2 * math.cos(Sine / 56))),.1)
+			Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0)*CFrame.Angles(math.rad(17 - 6 * math.cos(Sine / 37)),math.rad(0 + 5 * math.cos(Sine / 43) - 5 * math.cos(Sine / 0.25)),math.rad(-20 - 2 * math.cos(Sine / 56))),.1)
+			RightShoulder.C0 = Clerp(RightShoulder.C0,CFrame.new(1.5,0.5,0)*CFrame.Angles(math.rad(5 + 3 * math.cos(Sine / 43)),math.rad(-16 - 5 * math.cos(Sine / 52)),math.rad(23 + 4 * math.cos(Sine / 37))),.1)
+			LeftShoulder.C0 = Clerp(LeftShoulder.C0,CFrame.new(-1.5,0.5,0)*CFrame.Angles(math.rad(160),math.rad(0),math.rad(25)),.1)
 		end
 	elseif Velocity > 2 and Velocity < 22 and Hit ~= nil then
 		Animation="Walk"
 		if Attack==false then
 			if Mode == 1 then
-				RightHip.C0=Clerp(RightHip.C0,CFrame.new(1,-1 + 0.05 * math.cos(Sine / 4),0)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(0),math.rad(0 + 5 * math.cos(Sine / 8)),math.rad(0 + 35 * math.cos(Sine / 8))),.1)
-				LeftHip.C0=Clerp(LeftHip.C0,CFrame.new(-1,-1 + 0.05 * math.cos(Sine / 4),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(0),math.rad(0 + 5 * math.cos(Sine / 8)),math.rad(0 + 35 * math.cos(Sine / 8))),.1)
-				RootJoint.C0=Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,-0.05,-0.05 - 0.05 * math.cos(Sine / 4))*CFrame.Angles(math.rad(5 + 3 * math.cos(Sine / 4)),math.rad(0),math.rad(0 - HumanoidRootPart.RotVelocity.Y - 5 * math.cos(Sine / 8))),.1)
-				Torso.Neck.C0=Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0)*CFrame.Angles(math.rad(20 - 3 * math.cos(Sine / 4)),math.rad(0),math.rad(0 - Head.RotVelocity.Y*2.5 + 5 * math.cos(Sine / 8))),.1)
-				RightShoulder.C0=Clerp(RightShoulder.C0,CFrame.new(1.5,0.5,0 + 0.25 * math.cos(Sine / 8))*CFrame.Angles(math.rad(0 - 50 * math.cos(Sine / 8)),math.rad(0),math.rad(5 - 10 * math.cos(Sine / 4))),.1)
-				LeftShoulder.C0=Clerp(LeftShoulder.C0,CFrame.new(-1.5,0.5,0)*CFrame.Angles(math.rad(160),math.rad(0),math.rad(25)),.1)
+				RightHip.C0 = Clerp(RightHip.C0,CFrame.new(1,-1 + 0.05 * math.cos(Sine / 4),0)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(0),math.rad(0 + 5 * math.cos(Sine / 8)),math.rad(0 + 35 * math.cos(Sine / 8))),.1)
+				LeftHip.C0 = Clerp(LeftHip.C0,CFrame.new(-1,-1 + 0.05 * math.cos(Sine / 4),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(0),math.rad(0 + 5 * math.cos(Sine / 8)),math.rad(0 + 35 * math.cos(Sine / 8))),.1)
+				RootJoint.C0 = Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,-0.05,-0.05 - 0.05 * math.cos(Sine / 4))*CFrame.Angles(math.rad(5 + 3 * math.cos(Sine / 4)),math.rad(0),math.rad(0 - HumanoidRootPart.RotVelocity.Y - 5 * math.cos(Sine / 8))),.1)
+				Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0)*CFrame.Angles(math.rad(20 - 3 * math.cos(Sine / 4)),math.rad(0),math.rad(0 - Head.RotVelocity.Y*2.5 + 5 * math.cos(Sine / 8))),.1)
+				RightShoulder.C0 = Clerp(RightShoulder.C0,CFrame.new(1.5,0.5,0 + 0.25 * math.cos(Sine / 8))*CFrame.Angles(math.rad(0 - 50 * math.cos(Sine / 8)),math.rad(0),math.rad(5 - 10 * math.cos(Sine / 4))),.1)
+				LeftShoulder.C0 = Clerp(LeftShoulder.C0,CFrame.new(-1.5,0.5,0)*CFrame.Angles(math.rad(160),math.rad(0),math.rad(25)),.1)
 			end
 		end
 	end
