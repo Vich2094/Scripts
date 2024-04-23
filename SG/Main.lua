@@ -200,6 +200,29 @@ local LeftHip = Torso["Left Hip"]
 local RightHip = Torso["Right Hip"] 
 
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
+-- || Mode || --
+--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
+
+local Billboard = Instance.new("BillboardGui", Head)
+Billboard.Adornee = nil
+Billboard.Name = "Label"
+Billboard.Size = UDim2.new(4, 0, 1.2, 0)
+Billboard.StudsOffset = Vector3.new(-8, 8/1.5, 0)
+
+local Label = Instance.new("TextLabel", Billboard)
+Label.Size = UDim2.new(10/2, 0, 7/2, 0)
+Label.FontSize = "Size8"
+Label.TextScaled = true
+Label.TextTransparency = 0
+Label.BackgroundTransparency = 1 
+Label.TextTransparency = 0
+Label.TextStrokeTransparency = 0
+Label.Font = "Fantasy"
+Label.TextStrokeColor3 = Color3.new(1,0,0)
+Label.TextColor3 = Color3.new(0.25,0,0)
+Label.Text = "Code Readable Star Glitcher Thing"
+
+--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
 -- || Functions || --
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
 
