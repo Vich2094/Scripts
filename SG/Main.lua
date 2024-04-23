@@ -835,7 +835,7 @@ end
 
 for Index, Value in pairs(Halo:GetChildren()) do
 	if Value:IsA("Part") then
-		Value.BrickColor = BrickColor.new("TempExtraWings")
+		Value.BrickColor = BrickColor.new("Really red")
 		Value.Material = "Neon"
 	end
 end
