@@ -399,9 +399,11 @@ function Damage(Part, Hit, Minimum, Maximum, Knockback, Type, Property, Delay, H
 		if Blocked == false then
 			local HitHealth = Humanoid.Health
 			Humanoid.Health = Humanoid.Health - Damage
+			
 			if HitHealth ~= Humanoid.Health and HitHealth ~= 0 and 0 >= Humanoid.Health and h.Parent.Name ~= "Hologram" then
 				print("gained kill")
 			end
+
 			ShowDamage(Part.CFrame * CFrame.new(0, 0, Part.Size.Z / 2).Position + Vector3.new(0, 1.5, 0), -Damage, 1.5, Part.BrickColor.Color)
 		else
 			Humanoid.Health = Humanoid.Health - Damage / 2
