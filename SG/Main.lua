@@ -29,9 +29,9 @@ do
 		return setmetatable({Functions={}},FakeEvent_Metatable)
 	end
 
-    local FakeMouse = {Hit=CFrame.new(),KeyUp=fakeEvent(),KeyDown=fakeEvent(),Button1Up=fakeEvent(),Button1Down=fakeEvent(),Button2Up=fakeEvent(),Button2Down=fakeEvent()}
-    FakeMouse.keyUp = FakeMouse.KeyUp
-    FakeMouse.keyDown = FakeMouse.KeyDown
+	local FakeMouse = {Hit=CFrame.new(),KeyUp=fakeEvent(),KeyDown=fakeEvent(),Button1Up=fakeEvent(),Button1Down=fakeEvent(),Button2Up=fakeEvent(),Button2Down=fakeEvent()}
+	FakeMouse.keyUp = FakeMouse.KeyUp
+	FakeMouse.keyDown = FakeMouse.KeyDown
 	local UIS = {InputBegan=fakeEvent(),InputEnded=fakeEvent()}
 	local CAS = {Actions={},BindAction=function(self,name,fun,touch,...)
 		CAS.Actions[name] = fun and {Name=name,Function=fun,Keys={...}} or nil
@@ -50,7 +50,7 @@ do
 	local Event = Instance.new("RemoteEvent")
 	Event.Name = "UserInput_Event"
 	Event.OnServerEvent:Connect(function(plr,io)
-	    if plr~=RealPlayer then return end
+		if plr~=RealPlayer then return end
 		FakeMouse.Target = io.Target
 		FakeMouse.Hit = io.Hit
 		if not io.isMouse then
@@ -70,9 +70,9 @@ do
 			end
 			FakeMouse:TriggerEvent(b and "KeyDown" or "KeyUp",io.KeyCode.Name:lower())
 			UIS:TriggerEvent(b and "InputBegan" or "InputEnded",io,false)
-	    end
+		end
 	end)
-	
+
 	Event.Parent = NLS([==[local Event = script:WaitForChild("UserInput_Event")
 	local Mouse = owner:GetMouse()
 	local UIS = game:GetService("UserInputService")
@@ -106,7 +106,7 @@ do
 			local s = rawget(self,"_RealService")
 			if s then
 				return typeof(s[k])=="function"
-				and function(_,...)return s[k](s,...)end or s[k]
+					and function(_,...)return s[k](s,...)end or s[k]
 			end
 		end,
 		__newindex = function(self,k,v)
@@ -142,7 +142,7 @@ do
 	}
 
 	rawset(FakeGame.Players,"localPlayer",FakeGame.Players.LocalPlayer)
-	
+
 	FakeGame.service = FakeGame.GetService
 	FakeService(FakeGame,game)
 
@@ -349,9 +349,15 @@ end
 
 local HaloColor = BrickColor.new("Really red")
 local TempColor = BrickColor.new("Really red")
+
 local Holder = Instance.new("Model",Character)
+Holder.Name = "Holder"
+
 local Wings = Instance.new("Model",Character)
+Holder.Name = "Wings"
+
 local Halo = Instance.new("Model",Character)
+Holder.Name = "Halos"
 
 local TempExraWings = Instance.new("Model",Character)
 local TempExraWings2 = Instance.new("Model",Character)
@@ -870,21 +876,21 @@ end
 local Animations = game:GetService("RunService").Heartbeat:Connect(function()
 	Swait()
 	Sine = Sine + Change
-	
+
 	LeftWing1Weld.C1 = Clerp(LeftWing1Weld.C1,CFrame.new(2,0,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(5 + 10 * math.cos(Sine / 32)),math.rad(0),math.rad(12.5 + 5 * math.cos(Sine / 32))),.3)
 	LeftWing2Weld.C1 = Clerp(LeftWing2Weld.C1,CFrame.new(3,1,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(10 + 15 * math.cos(Sine / 32)),math.rad(0),math.rad(25 + 7.5 * math.cos(Sine / 32))),.3)
 	LeftWing3Weld.C1 = Clerp(LeftWing3Weld.C1,CFrame.new(3.75,2,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(15 + 20 * math.cos(Sine / 32)),math.rad(0),math.rad(37.5 + 10 * math.cos(Sine / 32))),.3)
 	LeftWing4Weld.C1 = Clerp(LeftWing4Weld.C1,CFrame.new(4.75,3,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(20 + 25 * math.cos(Sine / 32)),math.rad(0),math.rad(50 + 12.5 * math.cos(Sine / 32))),.3)
 	LeftWing5Weld.C1 = Clerp(LeftWing5Weld.C1,CFrame.new(5.75,4,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(25 + 30 * math.cos(Sine / 32)),math.rad(0),math.rad(62.5 + 15 * math.cos(Sine / 32))),.3)
 	LeftWing6Weld.C1 = Clerp(LeftWing6Weld.C1,CFrame.new(6.75,5,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(30 + 35 * math.cos(Sine / 32)),math.rad(0),math.rad(75 + 17.5 * math.cos(Sine / 32))),.3)
-	
+
 	RightWing1Weld.C1 = Clerp(RightWing1Weld.C1,CFrame.new(-2,0,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(5 + 10 * math.cos(Sine / 32)),math.rad(0),math.rad(-12.5 - 5 * math.cos(Sine / 32))),.3)
 	RightWing2Weld.C1 = Clerp(RightWing2Weld.C1,CFrame.new(-3,1,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(10 + 15 * math.cos(Sine / 32)),math.rad(0),math.rad(-25 - 7.5 * math.cos(Sine / 32))),.3)
 	RightWing3Weld.C1 = Clerp(RightWing3Weld.C1,CFrame.new(-3.75,2,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(15 + 20 * math.cos(Sine / 32)),math.rad(0),math.rad(-37.5 - 10 * math.cos(Sine / 32))),.3)
 	RightWing4Weld.C1 = Clerp(RightWing4Weld.C1,CFrame.new(-4.75,3,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(20 + 25 * math.cos(Sine / 32)),math.rad(0),math.rad(-50 - 12.5 * math.cos(Sine / 32))),.3)
 	RightWing5Weld.C1 = Clerp(RightWing5Weld.C1,CFrame.new(-5.75,4,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(25 + 30 * math.cos(Sine / 32)),math.rad(0),math.rad(-62.5 - 15 * math.cos(Sine / 32))),.3)
 	RightWing6Weld.C1 = Clerp(RightWing6Weld.C1,CFrame.new(-6.75,5,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(30 + 35 * math.cos(Sine / 32)),math.rad(0),math.rad(-75 - 17.5 * math.cos(Sine / 32))),.3)
-	
+
 	Animate.Parent = nil
 	for _, Value in next, Humanoid:GetPlayingAnimationTracks() do
 		Value:Stop();
