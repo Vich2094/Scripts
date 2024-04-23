@@ -876,7 +876,77 @@ end
 local Animations = game:GetService("RunService").Heartbeat:Connect(function()
 	Swait()
 	Sine = Sine + Change
-
+	
+	for Index, Value in pairs(Character:GetDescendants()) do
+		if Value:IsA("BasePart") then
+			Value.Locked = true
+			Value.CastShadow = true
+			Value.CanCollide = false
+			Value.Archivable = true
+			Value.CanQuery = false
+			Value.CanTouch = false
+			Value.Anchored = false
+		end
+	end
+	
+	for Index, Value in pairs(Wings:GetDescendants()) do
+		if Value:IsA("BasePart") then
+			Value.Locked = true
+			Value.CastShadow = true
+			Value.CanCollide = false
+			Value.Archivable = true
+			Value.CanQuery = false
+			Value.CanTouch = false
+			Value.Anchored = false
+		end
+	end
+	
+	for Index, Value in pairs(Halo:GetDescendants()) do
+		if Value:IsA("BasePart") then
+			Value.Locked = true
+			Value.CastShadow = true
+			Value.CanCollide = false
+			Value.Archivable = true
+			Value.CanQuery = false
+			Value.CanTouch = false
+			Value.Anchored = false
+		end
+	end
+	
+	for Index, Value in pairs(TempExraWings:GetDescendants()) do
+		if Value:IsA("BasePart") then
+			Value.Locked = true
+			Value.CastShadow = true
+			Value.CanCollide = false
+			Value.Archivable = true
+			Value.CanQuery = false
+			Value.CanTouch = false
+			Value.Anchored = false
+		end
+	end
+	
+	for Index, Value in pairs(TempExraWings:GetDescendants()) do
+		if Value:IsA("BasePart") then
+			Value.Locked = true
+			Value.CastShadow = true
+			Value.CanCollide = false
+			Value.Archivable = true
+			Value.CanQuery = false
+			Value.CanTouch = false
+			Value.Anchored = false
+		end
+	end
+	
+	for Index, Value in pairs(game:GetService("Workspace"):GetDescendants()) do
+		if Value:IsA("Explosion") then
+			Value.BlastPressure = 0
+			Value.BlastRadius = 0
+			Value.DestroyJointRadiusPercent = 0
+			Value.ExplosionType = Enum.ExplosionType.NoCraters
+			Value:Destroy()
+		end
+	end
+	
 	LeftWing1Weld.C1 = Clerp(LeftWing1Weld.C1,CFrame.new(2,0,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(5 + 10 * math.cos(Sine / 32)),math.rad(0),math.rad(12.5 + 5 * math.cos(Sine / 32))),.3)
 	LeftWing2Weld.C1 = Clerp(LeftWing2Weld.C1,CFrame.new(3,1,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(10 + 15 * math.cos(Sine / 32)),math.rad(0),math.rad(25 + 7.5 * math.cos(Sine / 32))),.3)
 	LeftWing3Weld.C1 = Clerp(LeftWing3Weld.C1,CFrame.new(3.75,2,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(15 + 20 * math.cos(Sine / 32)),math.rad(0),math.rad(37.5 + 10 * math.cos(Sine / 32))),.3)
