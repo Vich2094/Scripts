@@ -94,7 +94,7 @@ do
 			Event:FireServer({isMouse=true,Target=t,Hit=h})
 		end
 		--Wait 2 frames
-		for i=1,2 do
+		for Index=1,2 do
 			HB:Wait()
 		end
 	end]==],script)
@@ -164,14 +164,61 @@ function Swait(Duration)
 end
 
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
+-- || RGB || --
+--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
+
+local r = 255
+local g = 0
+local b = 0
+
+coroutine.resume(coroutine.create(function()
+	while wait() do
+		for Index = 0, 254/5 do
+			Swait()
+			g = g + 5
+		end
+		
+		for Index = 0, 254/5 do
+			Swait()
+			r = r - 5
+		end
+		
+		for Index = 0, 254/5 do
+			Swait()
+			b = b + 5
+		end
+		
+		for Index = 0, 254/5 do
+			Swait()
+			g = g - 5
+		end
+		
+		for Index = 0, 254/5 do
+			Swait()
+			r = r + 5
+		end
+		
+		for Index = 0, 254/5 do
+			Swait()
+			b = b - 5
+		end
+	end
+end))
+
+--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
 -- || Variables || --
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
+
+local Rainbow = false
+local Chaos = false
 
 local Attack = false
 local Animation = "Idle"
 
 local Sine = 0
 local Change = 1
+
+local Type = 1
 local Mode = 1
 
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
@@ -179,6 +226,8 @@ local Mode = 1
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
 
 local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+
 local Character = Player.Character
 local Animate = Character:FindFirstChild("Animate")
 
@@ -305,8 +354,186 @@ function Clerp(a,b,t)
 end 
 
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
--- || Caster || --
+-- ||  || --
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
+
+function MagnitudeDamage(Part, Magnitude, Minimum, Maximum, Knock, Type)
+	for _, Character in pairs(workspace:GetChildren()) do
+		local Humanoid = Character:findFirstChildOfClass("Humanoid")
+		if Humanoid ~= nil then
+			local Head = Character:findFirstChild("Head")
+			if Head ~= nil then
+				local Target = Head.Position - Part.Position
+				local Magnitude = Target.Magnitude
+			end
+		end
+	end
+end
+
+function Sphere(BonusSpeed,type,pos,scale,value,color)
+	local Ring = Instance.new("Part", Character)
+	Ring.Anchored = true
+	Ring.BrickColor = color
+	Ring.CanCollide = false
+	Ring.FormFactor = 3
+	Ring.Name = "Ring"
+	Ring.Material = "Neon"
+	Ring.Size = Vector3.new(1, 1, 1)
+	Ring.Transparency = 0
+	Ring.TopSurface = 0
+	Ring.BottomSurface = 0
+	Ring.CFrame = pos
+	
+	local RingMesh = Instance.new("SpecialMesh", Ring)
+	RingMesh.MeshType = "Sphere"
+	RingMesh.Scale = scale
+	
+	if Rainbow == true then
+		Ring.Color = Color3.new(r/255,g/255,b/255)
+	end
+	
+	local Scaler2 = 1
+	if type == "Add" then
+		Scaler2 = 1*value
+	elseif type == "Divide" then
+		Scaler2 = 1/value
+	end
+	
+	coroutine.resume(coroutine.create(function()
+		for Index = 0,10/BonusSpeed,0.1 do
+			Swait()
+			
+			if Rainbow == true then
+				Ring.Color = Color3.new(r/255,g/255,b/255)
+			end
+			
+			if type == "Add" then
+				Scaler2 = Scaler2 - 0.01*value/BonusSpeed
+			elseif type == "Divide" then
+				Scaler2 = Scaler2 - 0.01/value*BonusSpeed
+			end
+			
+			if Chaos == true then
+				Ring.BrickColor = BrickColor.random()
+			end
+			
+			Ring.Transparency = Ring.Transparency + 0.01*BonusSpeed
+			RingMesh.Scale = RingMesh.Scale + Vector3.new(Scaler2*BonusSpeed, Scaler2*BonusSpeed, Scaler2*BonusSpeed)
+		end
+		
+		Ring:Destroy()
+	end))
+end
+
+function Sphere2(BonusSpeed,type,pos,scale,value,value2,value3,color)
+	local type = type
+	local Ring = Instance.new("Part", Character)
+	Ring.Anchored = true
+	Ring.BrickColor = color
+	Ring.CanCollide = false
+	Ring.FormFactor = 3
+	Ring.Name = "Ring"
+	Ring.Material = "Neon"
+	Ring.Size = Vector3.new(1, 1, 1)
+	Ring.Transparency = 0
+	Ring.TopSurface = 0
+	Ring.BottomSurface = 0
+	Ring.CFrame = pos
+	local RingMesh = Instance.new("SpecialMesh", Ring)
+	RingMesh.MeshType = "Sphere"
+	RingMesh.Scale = scale
+	local Scaler2 = 1
+	local Scaler2b = 1
+	local Scaler2c = 1
+	if type == "Add" then
+		Scaler2 = 1*value
+		Scaler2b = 1*value2
+		Scaler2c = 1*value3
+	elseif type == "Divide" then
+		Scaler2 = 1/value
+		Scaler2b = 1/value2
+		Scaler2c = 1/value3
+	end
+	coroutine.resume(coroutine.create(function()
+		for Index = 0,10/BonusSpeed,0.1 do
+			Swait()
+			if type == "Add" then
+				Scaler2 = Scaler2 - 0.01*value/BonusSpeed
+				Scaler2b = Scaler2b - 0.01*value/BonusSpeed
+				Scaler2c = Scaler2c - 0.01*value/BonusSpeed
+			elseif type == "Divide" then
+				Scaler2 = Scaler2 - 0.01/value*BonusSpeed
+				Scaler2b = Scaler2b - 0.01/value*BonusSpeed
+				Scaler2c = Scaler2c - 0.01/value*BonusSpeed
+			end
+			Ring.Transparency = Ring.Transparency + 0.01*BonusSpeed
+			RingMesh.Scale = RingMesh.Scale + Vector3.new(Scaler2*BonusSpeed, Scaler2b*BonusSpeed, Scaler2c*BonusSpeed)
+		end
+		Ring:Destroy()
+	end))
+end
+
+function SphereMK(BonusSpeed,FastSpeed,type,pos,x1,y1,z1,value,color,outerpos)
+	local Ring = Instance.new("Part", Character)
+	Ring.Anchored = true
+	Ring.BrickColor = color
+	Ring.CanCollide = false
+	Ring.FormFactor = 3
+	Ring.Name = "Ring"
+	Ring.Material = "Neon"
+	Ring.Size = Vector3.new(1, 1, 1)
+	Ring.Transparency = 0
+	Ring.TopSurface = 0
+	Ring.BottomSurface = 0
+	Ring.CFrame = pos
+	Ring.CFrame = Ring.CFrame + Ring.CFrame.lookVector*outerpos
+	
+	local RingMesh = Instance.new("SpecialMesh", Ring)
+	RingMesh.MeshType = "Sphere"
+	RingMesh.Scale = Vector3.new(x1,y1,z1)
+	
+	if Rainbow == true then
+		Ring.Color = Color3.new(r/255,g/255,b/255)
+	end
+	
+	local Scaler2 = 1
+	local Speeder = FastSpeed
+	
+	if type == "Add" then
+		Scaler2 = 1*value
+	elseif type == "Divide" then
+		Scaler2 = 1/value
+	end
+	
+	coroutine.resume(coroutine.create(function()
+		for Index = 0,10/BonusSpeed,0.1 do
+			Swait()
+			
+			if Rainbow == true then
+				Ring.Color = Color3.new(r/255,g/255,b/255)
+			end
+			
+			if type == "Add" then
+				Scaler2 = Scaler2 - 0.01*value/BonusSpeed
+			elseif type == "Divide" then
+				Scaler2 = Scaler2 - 0.01/value*BonusSpeed
+			end
+			
+			if Chaos == true then
+				Ring.BrickColor = BrickColor.random()
+			end
+			
+			Speeder = Speeder - 0.01*FastSpeed*BonusSpeed
+			
+			Ring.CFrame = Ring.CFrame + Ring.CFrame.lookVector*Speeder*BonusSpeed
+			Ring.Transparency = Ring.Transparency + 0.01*BonusSpeed
+			
+			RingMesh.Scale = RingMesh.Scale + Vector3.new(Scaler2*BonusSpeed, Scaler2*BonusSpeed, 0)
+		end
+		
+		Ring:Destroy()
+	end))
+end
 
 function Caster(Pos, Dir, Max, Ignore)
 	return game:service("Workspace"):FindPartOnRay(Ray.new(Pos, Dir.unit * (Max or 999.999)), Ignore) 
@@ -893,13 +1120,163 @@ for Index, Value in pairs(TempExraWings2:GetChildren()) do
 end
 
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
+-- || Attacks || --
+--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
+
+function Attack1()
+	Attack = true
+	
+	for Index = 0,1,0.1 do
+		Swait()
+		RootJoint.C0 = Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0,0)* CFrame.Angles(math.rad(20),math.rad(0),math.rad(-40)),0.2)
+		Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0) *CFrame.Angles(math.rad(0),math.rad(0),math.rad(40)),.2)
+		RightShoulder.C0 = Clerp(RightShoulder.C0, CFrame.new(1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(-40)), 0.2)
+		LeftShoulder.C0 = Clerp(LeftShoulder.C0, CFrame.new(-1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(-40)), 0.2)
+		RightHip.C0=Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),-0.75)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(20)),.2)
+		LeftHip.C0Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(10)),.2)
+	end
+
+	local Hitbox = Instance.new("Part", Character)
+	Hitbox.Anchored = true
+	Hitbox.CanCollide = false
+	Hitbox.FormFactor = 3
+	Hitbox.Name = "Ring"
+	Hitbox.Material = "Neon"
+	Hitbox.Size = Vector3.new(1, 1, 1)
+	Hitbox.Transparency = 1
+	Hitbox.TopSurface = 0
+	Hitbox.BottomSurface = 0
+	Hitbox.CFrame = HumanoidRootPart.CFrame + HumanoidRootPart.CFrame.LookVector*2
+	
+	MagnitudeDamage(Hitbox, 3, 10,30, 0, "Normal")
+	Hitbox:Destroy()
+	
+	for Index = 0,1,0.1 do
+		Swait()
+		RootJoint.C0 = Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0,0)* CFrame.Angles(math.rad(-5),math.rad(0),math.rad(70)),0.4)
+		Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0) *CFrame.Angles(math.rad(20),math.rad(0),math.rad(-70)),.4)
+		RightShoulder.C0 = Clerp(RightShoulder.C0, CFrame.new(1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(70)), 0.4)
+		LeftShoulder.C0 = Clerp(LeftShoulder.C0, CFrame.new(-1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(40)), 0.4)
+		RightHip.C0=Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),-0.75)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-40)),.4)
+		LeftHip.C0Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-10)),.4)
+	end
+
+	Attack = false
+end
+
+function Attack2()
+	Attack = true
+	
+	for Index = 0,1,0.1 do
+		Swait()
+		RootJoint.C0 = Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0,0)* CFrame.Angles(math.rad(20),math.rad(0),math.rad(40)),0.2)
+		Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0) *CFrame.Angles(math.rad(0),math.rad(0),math.rad(-40)),.2)
+		RightShoulder.C0 = Clerp(RightShoulder.C0, CFrame.new(1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(40)), 0.2)
+		LeftShoulder.C0 = Clerp(LeftShoulder.C0, CFrame.new(-1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(40)), 0.2)
+		RightHip.C0=Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),-0.75)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(20)),.2)
+		LeftHip.C0Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(10)),.2)
+	end
+	
+	local Hitbox = Instance.new("Part", Character)
+	Hitbox.Anchored = true
+	Hitbox.CanCollide = false
+	Hitbox.FormFactor = 3
+	Hitbox.Name = "Ring"
+	Hitbox.Material = "Neon"
+	Hitbox.Size = Vector3.new(1, 1, 1)
+	Hitbox.Transparency = 1
+	Hitbox.TopSurface = 0
+	Hitbox.BottomSurface = 0
+	Hitbox.CFrame = HumanoidRootPart.CFrame + HumanoidRootPart.CFrame.LookVector*2
+	
+	MagnitudeDamage(Hitbox, 3, 10,30, 0, "Normal")
+	Hitbox:Destroy()
+	
+	for Index = 0,1,0.1 do
+		Swait()
+		RootJoint.C0 = Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0,0)* CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-70)),0.4)
+		Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0) *CFrame.Angles(math.rad(20),math.rad(0),math.rad(70)),.4)
+		RightShoulder.C0 = Clerp(RightShoulder.C0, CFrame.new(1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(-40)), 0.4)
+		LeftShoulder.C0 = Clerp(LeftShoulder.C0, CFrame.new(-1.45, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(-70)), 0.4)
+		RightHip.C0=Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-40)),.4)
+		LeftHip.C0Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-5),math.rad(0),math.rad(-10)),.4)
+	end
+	
+	Attack = false
+end
+
+function Attack3()
+	Attack = true
+	for Index = 0,1,0.1 do
+		Swait()
+		RootJoint.C0 = Clerp(RootJoint.C0,CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)*CFrame.new(0,0,0)* CFrame.Angles(math.rad(0),math.rad(0),math.rad(80)),0.3)
+		Torso.Neck.C0 = Clerp(Torso.Neck.C0,CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0) *CFrame.Angles(math.rad(20),math.rad(0),math.rad(-80)),.3)
+		RightShoulder.C0 = Clerp(RightShoulder.C0, CFrame.new(1.5, 0.5, 0) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(80)), 0.3)
+		LeftShoulder.C0 = Clerp(LeftShoulder.C0, CFrame.new(-1.5, 0.5, 0) * CFrame.Angles(math.rad(10), math.rad(0), math.rad(-20)), 0.3)
+		RightHip.C0=Clerp(RightHip.C0,CFrame.new(1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(90),math.rad(0))*CFrame.Angles(math.rad(-0.5),math.rad(0),math.rad(0)),.3)
+		LeftHip.C0Clerp(LeftHip.C0,CFrame.new(-1,-1 - 0.05 * math.cos(Sine / 25),0)*CFrame.Angles(math.rad(0),math.rad(-90),math.rad(0))*CFrame.Angles(math.rad(-2.5),math.rad(10),math.rad(0)),.3)
+	end
+	
+	local DistanceLook = 5
+	
+	for Index = 0, 4 do
+		Swait(2)
+		
+		local Hitbox = Instance.new("Part", Character)
+		Hitbox.Anchored = true
+		Hitbox.CanCollide = false
+		Hitbox.FormFactor = 3
+		Hitbox.Name = "Ring"
+		Hitbox.Material = "Neon"
+		Hitbox.Size = Vector3.new(1, 1, 1)
+		Hitbox.Transparency = 1
+		Hitbox.TopSurface = 0
+		Hitbox.BottomSurface = 0
+		Hitbox.CFrame = HumanoidRootPart.CFrame + HumanoidRootPart.CFrame.LookVector*DistanceLook
+		
+		Sphere(3,"Add",Hitbox.CFrame,Vector3.new(0,0,0),0.15,TempColor)
+		Sphere(6,"Add",Hitbox.CFrame,Vector3.new(0,0,0),0.3,TempColor)
+		
+		MagnitudeDamage(Hitbox, 10, 15,35, 0, "Normal")
+		
+		for Index = 0, 2 do
+			SphereMK(2,0.2,"Add",RightArm.CFrame*CFrame.Angles(math.rad(-90+math.random(-20,20)),math.rad(math.random(-20,20)),math.rad(math.random(-20,20))),0.5,0.5,5,-0.005,TempColor,0)
+			SphereMK(3,0.2,"Add",Hitbox.CFrame*CFrame.Angles(math.rad(math.random(-360,360)),math.rad(math.random(-360,360)),math.rad(math.random(-360,360))),0.5,0.5,5,-0.005,TempColor,0)
+			SphereMK(6,0.35,"Add",Hitbox.CFrame*CFrame.Angles(math.rad(math.random(-360,360)),math.rad(math.random(-360,360)),math.rad(math.random(-360,360))),0.5,0.5,5,-0.005,TempColor,0)
+		end
+	
+		game:GetService("Debris"):AddItem(Hitbox, 5)
+		DistanceLook = DistanceLook + 10
+	end
+	
+	Attack = false
+end
+
+--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
+-- || Keys || --
+--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
+
+Mouse.Button1Down:connect(function()
+	if Attack == false and Type == 1 then
+		Type = 2
+		Attack1()
+	elseif Attack == false and Type == 2 then
+		Type = 3
+		Attack2()
+	elseif Attack == false and Type == 3 then
+		Type = 1
+		Attack3()
+	end
+end)
+
+--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
 -- || Animations || --
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
 
 local Animations = game:GetService("RunService").Heartbeat:Connect(function()
 	Swait()
 	Sine = Sine + Change
-	
+
 	for Index, Value in pairs(Character:GetDescendants()) do
 		if Value:IsA("BasePart") then
 			Value.Locked = true
@@ -911,7 +1288,7 @@ local Animations = game:GetService("RunService").Heartbeat:Connect(function()
 			Value.Anchored = false
 		end
 	end
-	
+
 	for Index, Value in pairs(Wings:GetDescendants()) do
 		if Value:IsA("BasePart") then
 			Value.Locked = true
@@ -923,7 +1300,7 @@ local Animations = game:GetService("RunService").Heartbeat:Connect(function()
 			Value.Anchored = false
 		end
 	end
-	
+
 	for Index, Value in pairs(Halo:GetDescendants()) do
 		if Value:IsA("BasePart") then
 			Value.Locked = true
@@ -935,7 +1312,7 @@ local Animations = game:GetService("RunService").Heartbeat:Connect(function()
 			Value.Anchored = false
 		end
 	end
-	
+
 	for Index, Value in pairs(TempExraWings:GetDescendants()) do
 		if Value:IsA("BasePart") then
 			Value.Locked = true
@@ -947,7 +1324,7 @@ local Animations = game:GetService("RunService").Heartbeat:Connect(function()
 			Value.Anchored = false
 		end
 	end
-	
+
 	for Index, Value in pairs(TempExraWings:GetDescendants()) do
 		if Value:IsA("BasePart") then
 			Value.Locked = true
@@ -959,7 +1336,7 @@ local Animations = game:GetService("RunService").Heartbeat:Connect(function()
 			Value.Anchored = false
 		end
 	end
-	
+
 	for Index, Value in pairs(game:GetService("Workspace"):GetDescendants()) do
 		if Value:IsA("Explosion") then
 			Value.BlastPressure = 0
@@ -969,7 +1346,7 @@ local Animations = game:GetService("RunService").Heartbeat:Connect(function()
 			Value:Destroy()
 		end
 	end
-	
+
 	LeftWing1Weld.C1 = Clerp(LeftWing1Weld.C1,CFrame.new(2,0,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(5 + 10 * math.cos(Sine / 32)),math.rad(0),math.rad(12.5 + 5 * math.cos(Sine / 32))),.3)
 	LeftWing2Weld.C1 = Clerp(LeftWing2Weld.C1,CFrame.new(3,1,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(10 + 15 * math.cos(Sine / 32)),math.rad(0),math.rad(25 + 7.5 * math.cos(Sine / 32))),.3)
 	LeftWing3Weld.C1 = Clerp(LeftWing3Weld.C1,CFrame.new(3.75,2,0)*CFrame.Angles(math.rad(0),math.rad(0),math.rad(0))*CFrame.Angles(math.rad(15 + 20 * math.cos(Sine / 32)),math.rad(0),math.rad(37.5 + 10 * math.cos(Sine / 32))),.3)
