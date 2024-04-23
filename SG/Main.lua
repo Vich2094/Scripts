@@ -828,15 +828,15 @@ TR6.Enabled = false
 
 for Index, Value in pairs(Wings:GetChildren()) do
 	if Value:IsA("Part") then
-		Value.BrickColor = BrickColor.new("Really black")
-		Value.Material = "Glass"
+		Value.BrickColor = BrickColor.new("Really red")
+		Value.Material = "Neon"
 	end
 end
 
 for Index, Value in pairs(Halo:GetChildren()) do
 	if Value:IsA("Part") then
-		Value.BrickColor = BrickColor.new("Crimson")
-		Value.Material = "Granite"
+		Value.BrickColor = BrickColor.new("TempExtraWings")
+		Value.Material = "Neon"
 	end
 end
 
@@ -847,18 +847,18 @@ for Index, Value in pairs(Wings:GetChildren()) do
 	end
 end
 
-for Index, Value in pairs(TempExtraWings:GetChildren()) do
+for Index, Value in pairs(TempExraWings:GetChildren()) do
 	if Value:IsA("Part") then
 		Value.Transparency = 1
-		Value.BrickColor = BrickColor.new("White")
+		Value.BrickColor = BrickColor.new("Really red")
 		Value.Material = "Neon"
 	end
 end
 
-for Index, Value in pairs(TempExtraWings2:GetChildren()) do
+for Index, Value in pairs(TempExraWings2:GetChildren()) do
 	if Value:IsA("Part") then
 		Value.Transparency = 1
-		Value.BrickColor = BrickColor.new("White")
+		Value.BrickColor = BrickColor.new("Really red")
 		Value.Material = "Neon"
 	end
 end
