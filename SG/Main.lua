@@ -347,11 +347,11 @@ end
 -- || Modles || --
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
 
-local HaloColor = BrickColor.new("Really black")
-local TempColor = BrickColor.new("Really black")
+local HaloColor = BrickColor.new("Really red")
+local TempColor = BrickColor.new("Really red")
 local Holder = Instance.new("Model",Character)
 local Wings = Instance.new("Model",Character)
-local Halo2 = Instance.new("Model",Character)
+local Halo = Instance.new("Model",Character)
 
 local TempExraWings = Instance.new("Model",Character)
 local TempExraWings2 = Instance.new("Model",Character)
@@ -366,14 +366,14 @@ CreateWeld(Parts,RightArm,Parts,0,1,0,math.rad(0),math.rad(0),math.rad(0),0,0,0,
 local Parts2 = CreatePart(Holder,1,1,"SmoothPlastic",BrickColor.random())
 CreateWeld(Parts2,LeftArm,Parts2,0,1,0,math.rad(0),math.rad(0),math.rad(0),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
-local Handle2 = CreatePart(Halo2,1,1,"Neon",TempColor)
+local Handle2 = CreatePart(Halo,1,1,"Neon",TempColor)
 CreateMesh(Handle,"Brick",0,0,0)
 local Handle2Weld = CreateWeld(Handle2,Torso,Handle2,0,-1.5,-1.05,math.rad(0),math.rad(0),math.rad(0),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
 local Values = 10
 for Index = 0, 49 do
 	Values = Values + 10
-	Things = CreatePart(Halo2,0,0,"Neon",HaloColor)
+	Things = CreatePart(Halo,0,0,"Neon",HaloColor)
 	CreateMesh(Things,"Brick",0.25,0.1,0.1)
 	CreateWeld(Things,Handle2,Things,0,1,0,math.rad(0),math.rad(0),math.rad(Values),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 end
@@ -612,22 +612,22 @@ local RightWing1 = CreatePart(Holder,1,1,"Neon",TempColor)
 CreateMesh(Handle,"Brick",0.5,0.5,0.5)
 local RightWing1Weld = CreateWeld(RightWing1,Handle,RightWing1,-3,0,0,math.rad(5),math.rad(0),math.rad(-12.5),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
-Welds = CreatePart(Halo2,0,0,"Neon",HaloColor)
+Welds = CreatePart(Halo,0,0,"Neon",HaloColor)
 CreateMesh(Welds,"Wedge",0.05,0.5,0.5)
 CreateWeld(Welds,RightWing1,Welds,0,0,0.25,math.rad(0),math.rad(90),math.rad(0),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
 local A0 = Instance.new('Attachment',Welds)
 A0.Position = Vector3.new(0,0.25,0.25)
 
-Welds = CreatePart(Halo2,0,0,"Neon",HaloColor)
+Welds = CreatePart(Halo,0,0,"Neon",HaloColor)
 CreateMesh(Welds,"Wedge",0.05,0.5,0.5)
 CreateWeld(Welds,RightWing1,Welds,0,0,0.25,math.rad(0),math.rad(-90),math.rad(0),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
-Welds = CreatePart(Halo2,0,0,"Neon",HaloColor)
+Welds = CreatePart(Halo,0,0,"Neon",HaloColor)
 CreateMesh(Welds,"Wedge",0.05,0.5,3)
 CreateWeld(Welds,RightWing1,Welds,0,-0.25,1.75,math.rad(0),math.rad(90),math.rad(90),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
-Welds = CreatePart(Halo2,0,0,"Neon",HaloColor)
+Welds = CreatePart(Halo,0,0,"Neon",HaloColor)
 CreateMesh(Welds,"Wedge",0.05,3,0.5)
 CreateWeld(Welds,RightWing1,Welds,0,-1.75,0.25,math.rad(90),math.rad(90),math.rad(90),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
@@ -647,22 +647,22 @@ local RightWing2 = CreatePart(Holder,1,1,"Neon",TempColor)
 CreateMesh(Handle,"Brick",0.5,0.5,0.5)
 local RightWing2Weld = CreateWeld(RightWing2,Handle,RightWing2,-4,1,0,math.rad(10),math.rad(0),math.rad(-25),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
-Welds = CreatePart(Halo2,0,0,"Neon",HaloColor)
+Welds = CreatePart(Halo,0,0,"Neon",HaloColor)
 CreateMesh(Welds,"Wedge",0.05,0.5,0.5)
 CreateWeld(Welds,RightWing2,Welds,0,0,0.25,math.rad(0),math.rad(90),math.rad(0),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
 local A0 = Instance.new('Attachment',Welds)
 A0.Position = Vector3.new(0,0.25,0.25)
 
-Welds = CreatePart(Halo2,0,0,"Neon",HaloColor)
+Welds = CreatePart(Halo,0,0,"Neon",HaloColor)
 CreateMesh(Welds,"Wedge",0.05,0.5,0.5)
 CreateWeld(Welds,RightWing2,Welds,0,0,0.25,math.rad(0),math.rad(-90),math.rad(0),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
-Welds = CreatePart(Halo2,0,0,"Neon",HaloColor)
+Welds = CreatePart(Halo,0,0,"Neon",HaloColor)
 CreateMesh(Welds,"Wedge",0.05,0.5,3)
 CreateWeld(Welds,RightWing2,Welds,0,-0.25,1.75,math.rad(0),math.rad(90),math.rad(90),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
-Welds = CreatePart(Halo2,0,0,"Neon",HaloColor)
+Welds = CreatePart(Halo,0,0,"Neon",HaloColor)
 CreateMesh(Welds,"Wedge",0.05,3,0.5)
 CreateWeld(Welds,RightWing2,Welds,0,-1.75,0.25,math.rad(90),math.rad(90),math.rad(90),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
@@ -682,22 +682,22 @@ local RightWing3 = CreatePart(Holder,1,1,"Neon",TempColor)
 CreateMesh(Handle,"Brick",0.5,0.5,0.5)
 local RightWing3Weld = CreateWeld(RightWing3,Handle,RightWing3,-4.75,2,0,math.rad(15),math.rad(0),math.rad(-37.5),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
-Welds = CreatePart(Halo2,0,0,"Neon",HaloColor)
+Welds = CreatePart(Halo,0,0,"Neon",HaloColor)
 CreateMesh(Welds,"Wedge",0.05,0.5,0.5)
 CreateWeld(Welds,RightWing3,Welds,0,0,0.25,math.rad(0),math.rad(90),math.rad(0),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
 local A0 = Instance.new('Attachment',Welds)
 A0.Position = Vector3.new(0,0.25,0.25)
 
-Welds = CreatePart(Halo2,0,0,"Neon",HaloColor)
+Welds = CreatePart(Halo,0,0,"Neon",HaloColor)
 CreateMesh(Welds,"Wedge",0.05,0.5,0.5)
 CreateWeld(Welds,RightWing3,Welds,0,0,0.25,math.rad(0),math.rad(-90),math.rad(0),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
-Welds = CreatePart(Halo2,0,0,"Neon",HaloColor)
+Welds = CreatePart(Halo,0,0,"Neon",HaloColor)
 CreateMesh(Welds,"Wedge",0.05,0.5,3)
 CreateWeld(Welds,RightWing3,Welds,0,-0.25,1.75,math.rad(0),math.rad(90),math.rad(90),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
-Welds = CreatePart(Halo2,0,0,"Neon",HaloColor)
+Welds = CreatePart(Halo,0,0,"Neon",HaloColor)
 CreateMesh(Welds,"Wedge",0.05,3,0.5)
 CreateWeld(Welds,RightWing3,Welds,0,-1.75,0.25,math.rad(90),math.rad(90),math.rad(90),0,0,0,math.rad(0),math.rad(0),math.rad(0))
 
@@ -821,6 +821,47 @@ TR6.Lifetime = 0.6
 TR4.Enabled = false
 TR5.Enabled = false
 TR6.Enabled = false
+
+--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
+-- || Checks || --
+--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
+
+for Index, Value in pairs(Wings:GetChildren()) do
+	if Value:IsA("Part") then
+		Value.BrickColor = BrickColor.new("Really black")
+		Value.Material = "Glass"
+	end
+end
+
+for Index, Value in pairs(Halo:GetChildren()) do
+	if Value:IsA("Part") then
+		Value.BrickColor = BrickColor.new("Crimson")
+		Value.Material = "Granite"
+	end
+end
+
+for Index, Value in pairs(Wings:GetChildren()) do
+	if Value:IsA("Part") then
+		Value.BrickColor = BrickColor.new("Really red")
+		Value.Material = "Neon"
+	end
+end
+
+for Index, Value in pairs(TempExtraWings:GetChildren()) do
+	if Value:IsA("Part") then
+		Value.Transparency = 1
+		Value.BrickColor = BrickColor.new("White")
+		Value.Material = "Neon"
+	end
+end
+
+for Index, Value in pairs(TempExtraWings2:GetChildren()) do
+	if Value:IsA("Part") then
+		Value.Transparency = 1
+		Value.BrickColor = BrickColor.new("White")
+		Value.Material = "Neon"
+	end
+end
 
 --**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==--**==
 -- || Animations || --
