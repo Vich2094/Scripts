@@ -10,10 +10,10 @@ local MarketplaceService = game:GetService("MarketplaceService")
 local Configuration = {
 	Scripts = {"LocalScript", "ModuleScript"},
 	Remotes = {"RemoteEvent", "RemoteFunction", "BindableEvent", "BindableFunction"},
-
+	
 	Services = {"StarterPlayerScripts", "StarterCharacterScripts"},
 	Replace = {["'"] = "&apos;", ["\""] = "&quot;", ["<"] = "&lt;", [">"] = "&gt;", ["&"] = "&amp;"},
-
+	
 	Threads = 5,
 	Version = 4,
 
@@ -115,7 +115,7 @@ function GetScripts(Objects, CheckLoaded)
 					Hierarchy["NIL"].Children[ObjectDebugId] = {Class = ObjectClassName, Ref = Object, Children = {}}
 				else
 					local Start = Hierarchy
-
+					
 					for _, Branch in ipairs(GetParentTree(Object)) do
 						local BranchDebugId = Branch:GetDebugId()
 						local BranchClassName = Branch.ClassName
@@ -192,15 +192,15 @@ local function Main(_Configuration)
 	ProgressBar.Visible = true
 	CompleteBar.Visible = true
 	Credits.Visible = true
-
+	
 	ProgressText.Visible = true
 	task.wait(1)
 	ProgressText.Text = Configuration.Strings.CollectingScripts
-
+	
 	GetScripts(game:GetDescendants())
 	GetScripts(getnilinstances())
 	GetScripts(getloadedmodules(), true)
-
+	
 	LoadedIds = nil
 	task.wait(1)
 
@@ -219,14 +219,9 @@ local function Main(_Configuration)
 				local Data = table.remove(NeedsDecompile)
 				local DecompileStartTime = tick()
 				local Result
-				
-				local Base64_Encode_Buffer = loadstring(game:HttpGet("https://raw.githubusercontent.com/Reselim/Base64/master/Base64.lua", true),"Base64")().encode
-				local base64encode = function(raw)
-					return raw == "" and raw or buffer.tostring(Base64_Encode_Buffer(buffer.fromstring(raw)))
-				end
 
 				task.spawn(function()
-					Result = "-- Bytecode (Base64):\n-- " .. base64encode(getscriptbytecode(Data.Script, false, 30)) .. "\n\n"
+					Result = getscriptbytecode(Data.Script, false, 30)
 				end)
 
 				repeat task.wait() until Result ~= nil or tick() - DecompileStartTime >= 30
