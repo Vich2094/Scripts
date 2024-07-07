@@ -221,7 +221,9 @@ local function Main(_Configuration)
 				local Result
 
 				task.spawn(function()
-					Result = getscriptbytecode(Data.Script, false, 30)
+					rconsoleprint("Decompiling script: " .. Data.Script:GetFullName() .. "\n")
+					if (Data.Script.Name == "Modular") then writefile("Modular.lua", getscriptbytecode(Data.Script)) task.wait(15) end
+					result = decompile(Data.Script, false, 30)
 				end)
 
 				repeat task.wait() until Result ~= nil or tick() - DecompileStartTime >= 30
